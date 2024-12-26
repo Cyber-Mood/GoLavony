@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="icon.png">
+    <title>GoLavony</title>
+</head>
+<body>
+        <!--===========Nav Bar=================-->
+        <nav class="navbar">
+            <div class="logo"><i class="fa-solid fa-paper-plane"></i>GoLavony</div>
+            <div class="nav-links">
+                <a href="#">Home</a>
+                <a href="#services">Services</a>
+                <a href="#packages">Packages</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <a href="signin.html" class="cta"><i class="fa-solid fa-plane"></i> Sign In</a>
+        </nav>
+        <!--===============Banner================-->
+        <section id="home" class="banner">
+            <video class="banner-video" autoplay muted loop>
+                <source src="https://assets.mixkit.co/videos/41576/41576-720.mp4" type="video/mp4">
+            </video>
+            <div class="banner-text-item">
+                <div class="banner-heading">
+                    <h1>Where to next?</h1>
+                </div>
+                <form class="form">
+                    <label  for="from">From:</label>
+                    <input type="text" placeholder="Departure" class="from">
+                    <label  for="to">To:</label>
+                    <input type="text" placeholder="Destination" class="to">
+                    <label  for="date">Date:</label>
+                    <input type="date" class="date">
+                    <label  for="persons">Persons:</label>
+                    <input type="number" placeholder="Persons" class="persons" min="1">
+                    <button type="submit" class="book">Book</button>
+                </form>
+            </div>
+        </section>
+        <!--=========Services===============-->
+        <section class="services" id="services">
+            <h2>Our Services</h2>
+            <div class="services-grid">
+                <div class="card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Local Guides">
+                    <h3>Local Guides</h3>
+                    <p>800+ certified local guides to make your journey memorable.</p>
+                </div>
+                <div class="card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2920/2920063.png" alt="Trusted Agency">
+                    <h3>Trusted Agency</h3>
+                    <p>100% trusted services with verified tour operators.</p>
+                </div>
+                <div class="card">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Customer Satisfaction">
+                    <h3>Happy Travelers</h3>
+                    <p>Over 98% of our travelers rated us 5 stars.</p>
+                </div>
+            </div>
+        </section>
+    <!--========== Packages =========-->
+        <section class="packages" id="packages">
+            <h2>Our Top Packages</h2>
+            <h3>These are the most popular spots visit by our travelers</h3>
+            <div class="container">
+                <div id="slide">
+                    <div class="item" style="background-image: url(https://cdn.pixabay.com/photo/2020/08/10/01/28/castle-5476737_1280.jpg);">
+                        <div class="content">
+                            <div class="name">Osaka Castle</div>
+                            <div class="des">Osaka Castle is a Japanese castle in Chūō-ku, Osaka, Japan. The castle is one of Japan's most famous landmarks and played a major role in the unification of Japan during the sixteenth century of the Azuchi–Momoyama period.</div>
+                            <button>See more</button>
+                        </div>
+                    </div>
+                    <div class="item" style="background-image: url(https://www.visitsaudi.com/content/dam/wvs/destinations/makkah/makkah-banner-promotion.jpg);">
+                        <div class="content">
+                            <div class="name">Makkah</div>
+                            <div class="des">Makkah, in a desert valley in western Saudi Arabia, is Islam’s holiest city, as it’s the birthplace of the Prophet Muhammad and the faith itself. Only Muslims are allowed in the city, with millions arriving for the annual Hajj (pilgrimage).</div>
+                            <button>See more</button>
+                        </div>
+                    </div>
+                    <div class="item" style="background-image: url(https://cdn.pixabay.com/photo/2017/09/11/23/40/bridge-2740854_960_720.jpg);">
+                        <div class="content">
+                            <div class="name">Mostar</div>
+                            <div class="des">Mostar is a city in southern Bosnia and Herzegovina, straddling the Neretva River. It’s known for the iconic Stari Most (Old Bridge), a reconstructed medieval arched bridge. The nearby alleys are full of shops and market stalls, and the Old Bridge Museum explores the bridge’s long history. </div>
+                            <button>See more</button>
+                        </div>
+                    </div>
+                    <div class="item" style="background-image: url(https://media.timeout.com/images/106153566/1024/576/image.webp);">
+                        <div class="content">
+                            <div class="name">Tasmania</div>
+                            <div class="des">Tasmania is an island state of Australia. It is located 240 kilometres to the south of the Australian mainland, and is separated from it by the Bass Strait.</div>
+                            <button>See more</button>
+                        </div>
+                    </div>
+                    <div class="item" style="background-image: url(https://media.timeout.com/images/105981815/1024/576/image.webp);">
+                        <div class="content">
+                            <div class="name">Srebrenik</div>
+                            <div class="des">Srebrenik is a city located in Tuzla Canton of the Federation of Bosnia and Herzegovina. It is located in northeastern Bosnia and Herzegovina, near Tuzla.</div>
+                            <button>See more</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button id="prev"><i class="fa-solid fa-angle-left"></i></button>
+                    <button id="next"><i class="fa-solid fa-angle-right"></i></button>
+                </div>
+            </div>
+        </section>
+        <!--========================= About Us =========================-->
+        <section id="about" class="about">
+            <div class="about-container">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1465070845512-2b2dbdc6df66?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="About Us">
+                </div>
+                <div class="about-text">
+                    <h1>About Us</h1>
+                    <p>At <strong>GoLavony</strong>, we connect travelers with unforgettable destinations. Our platform offers essential tools like weather forecasts, travel tips, and stunning visuals to help you explore the world effortlessly. Whether you're a seasoned adventurer or a first-time traveler, we ensure a seamless and personalized experience.</p>
+                    <p>We prioritize trust, affordability, and sustainability, working only with certified guides and verified operators. Our mission is to make luxury travel accessible and provide memorable journeys that are both enriching and responsible.</p>
+                    <p>Join GoLavony and let us guide you on your next adventure. The world is calling—are you ready to explore?</p>
+                </div>
+            </div>
+        </section>
+        <!--========= Contact ===========-->
+        <section id="contact" class="contact">
+            <h2>Contact Us</h2>
+            <p>If you have any queries, feel free to reach out!</p>
+            <form action="https://formspree.io/f/{your-email}" method="POST">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
+            <!--===========Footer=================-->
+        <footer>
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>About Us</h3>
+                    <ul>
+                        <li><a href="#">Our Mission</a></li>
+                        <li><a href="#">Our Team</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#packages">Packages</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>Email: inquiry@golavony.com</li>
+                        <li>Phone: +123-456-7890</li>
+                        <li>Address: Metropolitan University, Sylhet</li>
+                    </ul>
+                </div>
+                <div class="footer-column newsletter">
+                    <h3>Subscribe to Our Newsletter</h3>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </div>
+                </div>
+                <div class="social-icons">
+                    <a href="https://www.google.com/maps/contrib/101440126387838231258/contribute/" target="blank" aria-label="Google Maps"><i class="fa-brands fa-google"></i></a>
+                    <a href="https://github.com/Cyber-Mood" target="blank" aria-label="Github"><i class="fab fa-github"></i></a>
+                    <a href="https://github.com/Tanjilase" target="blank" aria-label="Github"><i class="fab fa-github"></i></a>
+                    <a href="https://www.instagram.com/i.mahmoood/" target="blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/in/mahmud-112ab0255/" target="blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            <p>&copy; 2024 GoLavony. All rights reserved.</p>
+        </footer>
+    <script src="script.js"></script>
+</body>
+</html>
+  
