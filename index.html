@@ -5,197 +5,393 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="style.css" />
     <link rel="icon" type="image/png" href="icon.png">
-    <title>GoLavony</title>
+    <title>GoLavony 2.0</title>
 </head>
 <body>
-        <!--===========Nav Bar=================-->
-        <nav class="navbar">
-            <div class="logo"><i class="fa-solid fa-paper-plane"></i>GoLavony</div>
-            <div class="nav-links">
-                <a href="#">Home</a>
-                <a href="#services">Services</a>
-                <a href="#packages">Packages</a>
-                <a href="#about">About</a>
-                <a href="#contact">Contact</a>
+
+    <div class="page-transition"></div>
+
+    <div class="lightbox" id="lightbox">
+        <span class="close-lightbox" id="closeLightbox">&times;</span>
+        <img src="" alt="Expanded Image" id="lightbox-img">
+    </div>
+
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-content">
+            <span class="close-modal" id="closeModal">&times;</span>
+            <div class="modal-header">
+                <h2>Plan Your Escape</h2>
+                <p>Lock in your dates for the trip of a lifetime.</p>
             </div>
-            <a href="signin.html" class="cta"><i class="fa-solid fa-plane"></i> Sign In</a>
-        </nav>
-        <!--===============Banner================-->
-        <section id="home" class="banner">
-            <video class="banner-video" autoplay muted loop>
-                <source src="https://assets.mixkit.co/videos/41576/41576-720.mp4" type="video/mp4">
-            </video>
-            <div class="banner-text-item">
-                <div class="banner-heading">
-                    <h1>Where to next?</h1>
+            <form id="fakeBookingForm">
+                <div class="modal-input">
+                    <label>Select Date</label>
+                    <input type="date" id="bookDate" required>
                 </div>
-                <form class="form">
-                    <label  for="from">From:</label>
-                    <input type="text" placeholder="Departure" class="from">
-                    <label  for="to">To:</label>
-                    <input type="text" placeholder="Destination" class="to">
-                    <label  for="date">Date:</label>
-                    <input type="date" class="date">
-                    <label  for="persons">Persons:</label>
-                    <input type="number" placeholder="Persons" class="persons" min="1">
-                    <button type="submit" class="book">Book</button>
+                <div class="modal-input">
+                    <label>Number of Guests</label>
+                    <input type="number" min="1" max="10" placeholder="e.g. 2" required>
+                </div>
+                <div class="modal-input">
+                    <label>Special Requests</label>
+                    <textarea rows="2" placeholder="Ocean view, dietary restrictions..."></textarea>
+                </div>
+                <button type="submit" class="confirm-btn magnetic" id="confirmBtn">
+                    <span class="btn-text">Confirm Booking</span>
+                    <i class="fa-solid fa-spinner fa-spin loader" style="display: none;"></i>
+                </button>
+            </form>
+            <div class="success-message" id="successMessage" style="display: none;">
+                <i class="fa-solid fa-circle-check"></i>
+                <h3>Booking Confirmed!</h3>
+                <p>Pack your bags, your adventure awaits.</p>
+            </div>
+        </div>
+    </div>
+
+    <nav class="navbar" id="navbar">
+        <div class="logo"><i class="fa-solid fa-paper-plane"></i>GoLavony</div>
+        
+        <div class="nav-links" id="nav-links">
+            <a href="#">Home</a>
+            <a href="#experiences">Experiences</a>
+            <a href="#packages">Destinations</a>
+            <a href="#about">About</a>
+            <a href="#creators">Creators</a>
+            <button id="theme-toggle" aria-label="Toggle Dark Mode"><i class="fa-solid fa-moon"></i></button>
+        </div>
+        
+        <div class="nav-actions">
+            <a href="signin.html" class="cta magnetic" aria-label="Sign In">
+                <i class="fa-solid fa-plane"></i> <span class="cta-text">Sign In</span>
+            </a>
+            <div class="menu-icon" id="menu-icon">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="banner">
+        <video class="banner-video" autoplay muted loop playsinline>
+            <source src="https://assets.mixkit.co/videos/41576/41576-720.mp4" type="video/mp4">
+        </video>
+        <div class="banner-text-item">
+            <div class="banner-heading">
+                <h1>Where to next?</h1>
+            </div>
+            <form class="search-pill" id="searchForm">
+                <div class="input-group">
+                    <label for="from">Where</label>
+                    <input type="text" id="from" placeholder="Search destinations">
+                </div>
+                <div class="input-group">
+                    <label for="date">When</label>
+                    <input type="date" id="date" class="date">
+                </div>
+                <div class="input-group">
+                    <label for="persons">Who</label>
+                    <input type="number" id="persons" placeholder="Guests" min="1">
+                </div>
+                <button type="submit" class="search-btn magnetic" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </form>
+        </div>
+    </section>
+
+    <section class="experiences" id="experiences">
+        <div class="section-header reveal">
+            <h2>Curated Experiences</h2>
+            <p>Don't just visit. Immerse yourself in the vibe you crave.</p>
+        </div>
+        <div class="exp-grid">
+            <div class="exp-card reveal lightbox-trigger" data-img="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?q=80&w=2070&auto=format&fit=crop" style="background-image: url('https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?q=80&w=2070&auto=format&fit=crop');">
+                <div class="exp-content">
+                    <h3>Beachfront Villas</h3>
+                    <p>Wake up to the sound of the ocean.</p>
+                </div>
+            </div>
+            <div class="exp-card reveal lightbox-trigger" data-img="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop" style="background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop');">
+                <div class="exp-content">
+                    <h3>Mountain Escapes</h3>
+                    <p>Find your peace above the clouds.</p>
+                </div>
+            </div>
+            <div class="exp-card reveal lightbox-trigger" data-img="https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=2064&auto=format&fit=crop" style="background-image: url('https://images.unsplash.com/photo-1519501025264-65ba15a82390?q=80&w=2064&auto=format&fit=crop');">
+                <div class="exp-content">
+                    <h3>City Lights</h3>
+                    <p>Feel the pulse of the world's greatest metropolises.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="packages" id="packages">
+        <div class="section-header reveal">
+            <h2>Top Destinations</h2>
+            <p>Discover the most popular spots visited by our travelers.</p>
+        </div>
+        
+        <div class="filter-container reveal">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="asia">Asia</button>
+            <button class="filter-btn" data-filter="europe">Europe</button>
+            <button class="filter-btn" data-filter="middle-east">Middle East</button>
+            <button class="filter-btn" data-filter="oceania">Oceania</button>
+        </div>
+
+        <div class="dest-grid reveal">
+            <div class="dest-card" data-category="asia">
+                <div class="media-container lightbox-trigger" data-img="https://cdn.pixabay.com/photo/2020/08/10/01/28/castle-5476737_1280.jpg">
+                    <img src="https://cdn.pixabay.com/photo/2020/08/10/01/28/castle-5476737_1280.jpg" alt="Osaka Castle">
+                </div>
+                <div class="card-info">
+                    <h3>Osaka Castle</h3>
+                    <p>A famous landmark playing a major role in the unification of Japan.</p>
+                    <button class="outline-btn book-btn magnetic">Explore</button>
+                </div>
+            </div>
+            <div class="dest-card" data-category="europe">
+                <div class="media-container lightbox-trigger" data-img="https://images.unsplash.com/photo-1583265266785-aab9e443ee68?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                    <img src="https://images.unsplash.com/photo-1583265266785-aab9e443ee68?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Paris">
+                </div>
+                <div class="card-info">
+                    <h3>Paris</h3>
+                    <p>The city of light, romance, and unparalleled art and architecture.</p>
+                    <button class="outline-btn book-btn magnetic">Explore</button>
+                </div>
+            </div>
+            <div class="dest-card" data-category="middle-east">
+                <div class="media-container lightbox-trigger" data-img="https://www.visitsaudi.com/content/dam/wvs/destinations/makkah/makkah-banner-promotion.jpg">
+                    <img src="https://www.visitsaudi.com/content/dam/wvs/destinations/makkah/makkah-banner-promotion.jpg" alt="Makkah">
+                </div>
+                <div class="card-info">
+                    <h3>Makkah</h3>
+                    <p>Islam’s holiest city, nestled in a beautiful desert valley.</p>
+                    <button class="outline-btn book-btn magnetic">Explore</button>
+                </div>
+            </div>
+            <div class="dest-card" data-category="oceania">
+                <div class="media-container lightbox-trigger" data-img="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=2070&auto=format&fit=crop">
+                    <img src="https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?q=80&w=2070&auto=format&fit=crop" alt="Sydney">
+                </div>
+                <div class="card-info">
+                    <h3>Sydney</h3>
+                    <p>Experience the iconic Opera House and pristine coastal beaches.</p>
+                    <button class="outline-btn book-btn magnetic">Explore</button>
+                </div>
+            </div>
+            <div class="dest-card" data-category="europe">
+                <div class="media-container lightbox-trigger" data-img="https://cdn.pixabay.com/photo/2017/09/11/23/40/bridge-2740854_960_720.jpg">
+                    <img src="https://cdn.pixabay.com/photo/2017/09/11/23/40/bridge-2740854_960_720.jpg" alt="Mostar">
+                </div>
+                <div class="card-info">
+                    <h3>Mostar</h3>
+                    <p>Known for the iconic Stari Most spanning the Neretva River.</p>
+                    <button class="outline-btn book-btn magnetic">Explore</button>
+                </div>
+            </div>
+            <div class="dest-card" data-category="asia">
+                <div class="media-container lightbox-trigger" data-img="https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=2038&auto=format&fit=crop">
+                    <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=2038&auto=format&fit=crop" alt="Bali">
+                </div>
+                <div class="card-info">
+                    <h3>Bali</h3>
+                    <p>A tropical paradise renowned for its volcanic mountains and beaches.</p>
+                    <button class="outline-btn book-btn magnetic">Explore</button>
+                </div>
+            </div>
+            <div class="dest-card" data-category="middle-east">
+                <div class="media-container lightbox-trigger" data-img="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2070&auto=format&fit=crop">
+                    <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=2070&auto=format&fit=crop" alt="Dubai">
+                </div>
+                <div class="card-info">
+                    <h3>Dubai</h3>
+                    <p>A city of superlatives featuring futuristic architecture and luxury.</p>
+                    <button class="outline-btn book-btn magnetic">Explore</button>
+                </div>
+            </div>
+            <div class="dest-card" data-category="asia">
+                <div class="media-container lightbox-trigger" data-img="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?q=80&w=2070&auto=format&fit=crop">
+                    <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?q=80&w=2070&auto=format&fit=crop" alt="Tokyo">
+                </div>
+                <div class="card-info">
+                    <h3>Tokyo</h3>
+                    <p>A bustling metropolis where ultra-modern meets traditional heritage.</p>
+                    <button class="outline-btn book-btn magnetic">Explore</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="tales" id="tales">
+        <div class="section-header reveal">
+            <h2>Traveler Tales</h2>
+            <p>Real moments captured by the GoLavony community.</p>
+        </div>
+        <div class="tales-grid">
+            <div class="tale-item reveal lightbox-trigger" data-img="https://plus.unsplash.com/premium_photo-1664124888904-435121e89c74?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                <img src="https://plus.unsplash.com/premium_photo-1664124888904-435121e89c74?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Traveler">
+                <div class="tale-overlay">
+                    <p>"The Bali trip completely changed my perspective on life. Unforgettable."</p>
+                    <span>- Israt J.</span>
+                </div>
+            </div>
+            <div class="tale-item reveal lightbox-trigger" data-img="https://plus.unsplash.com/premium_photo-1663039978729-6f6775725f89?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                <img src="https://plus.unsplash.com/premium_photo-1663039978729-6f6775725f89?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Traveler">
+                <div class="tale-overlay">
+                    <p>"GoLavony handled everything. I just showed up and enjoyed the ride."</p>
+                    <span>- Ilteza R.</span>
+                </div>
+            </div>
+            <div class="tale-item reveal lightbox-trigger" data-img="https://plus.unsplash.com/premium_photo-1697729933176-7b999b743f8c?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                <img src="https://plus.unsplash.com/premium_photo-1697729933176-7b999b743f8c?q=80&w=627&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Traveler">
+                <div class="tale-overlay">
+                    <p>"The local guides knew all the hidden spots the tourists miss."</p>
+                    <span>- Shanta C.</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-v2">
+        <div class="about-container">
+            <div class="about-text-v2 reveal">
+                <h2>We believe the world is meant to be explored, not just seen.</h2>
+                <p>At <strong>GoLavony</strong>, we don't just book flights and hotels. We curate unforgettable chapters of your life. Our mission is to make luxury travel accessible, sustainable, and deeply personal.</p>
+                <p>Working exclusively with verified local operators, we ensure your journey supports the communities you visit while providing you with an incredibly seamless experience.</p>
+                <button class="outline-btn magnetic" style="margin-top: 20px; width: auto;">Read Our Story</button>
+            </div>
+            <div class="about-collage reveal">
+                <img src="https://images.unsplash.com/photo-1488085061387-422e29b40080?q=80&w=2062&auto=format&fit=crop" class="img-1 lightbox-trigger" data-img="https://images.unsplash.com/photo-1488085061387-422e29b40080?q=80&w=2062&auto=format&fit=crop" alt="Travel">
+                <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop" class="img-2 lightbox-trigger" data-img="https://images.unsplash.com/photo-1501785888041-af3ef285b470?q=80&w=2070&auto=format&fit=crop" alt="Travel">
+                <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop" class="img-3 lightbox-trigger" data-img="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2021&auto=format&fit=crop" alt="Travel">
+            </div>
+        </div>
+    </section>
+
+    <section class="creators" id="creators">
+        <div class="section-header reveal">
+            <h2>Meet the Creators</h2>
+            <p>The visionaries who engineered GoLavony</p>
+        </div>
+        <div class="creators-grid">
+            <div class="creator-card reveal">
+                <div class="creator-img"><i class="fa-solid fa-code"></i></div>
+                <h3>Mahmud</h3>
+                <p class="role">Lead Developer</p>
+                <p class="bio">Turning complex logic into seamless, beautiful web experiences.</p>
+                <div class="creator-socials">
+                    <a href="https://github.com/Cyber-Mood" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="https://www.linkedin.com/in/mahmud-112ab0255/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/i.mahmoood/" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="creator-card reveal">
+                <div class="creator-img"><i class="fa-solid fa-pen-nib"></i></div>
+                <h3>Lavony</h3>
+                <p class="role">UI/UX Designer</p>
+                <p class="bio">Crafting the visual language that makes the world want to explore.</p>
+                <div class="creator-socials">
+                    <a href="https://github.com/Tanjilase" target="_blank"><i class="fab fa-github"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-v2">
+        <div class="contact-wrapper reveal">
+            <div class="contact-info">
+                <h2>Get in Touch</h2>
+                <p>Have a question about your next adventure? Our concierge team is here to help.</p>
+                <div class="info-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <div>
+                        <h4>Email Us</h4>
+                        <p>inquiry@golavony.com</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <div>
+                        <h4>Call Us</h4>
+                        <p>+123-456-7890</p>
+                    </div>
+                </div>
+                <div class="info-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <div>
+                        <h4>Headquarters</h4>
+                        <p>Metropolitan University, Sylhet</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form-v2">
+                <h3>Send a Message</h3>
+                <form id="contactForm">
+                    <div class="input-line">
+                        <input type="text" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="input-line">
+                        <input type="email" id="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="input-line">
+                        <textarea id="message" rows="4" placeholder="Tell us about your dream trip..." required></textarea>
+                    </div>
+                    <button type="submit" class="send-btn magnetic">Send Message <i class="fa-solid fa-paper-plane"></i></button>
                 </form>
             </div>
-        </section>
-        <!--=========Services===============-->
-        <section class="services" id="services">
-            <h2>Our Services</h2>
-            <div class="services-grid">
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png" alt="Local Guides">
-                    <h3>Local Guides</h3>
-                    <p>800+ certified local guides to make your journey memorable.</p>
-                </div>
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2920/2920063.png" alt="Trusted Agency">
-                    <h3>Trusted Agency</h3>
-                    <p>100% trusted services with verified tour operators.</p>
-                </div>
-                <div class="card">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Customer Satisfaction">
-                    <h3>Happy Travelers</h3>
-                    <p>Over 98% of our travelers rated us 5 stars.</p>
-                </div>
-            </div>
-        </section>
-    <!--========== Packages =========-->
-        <section class="packages" id="packages">
-            <h2>Our Top Packages</h2>
-            <h3>These are the most popular spots visit by our travelers</h3>
-            <div class="container">
-                <div id="slide">
-                    <div class="item" style="background-image: url(https://cdn.pixabay.com/photo/2020/08/10/01/28/castle-5476737_1280.jpg);">
-                        <div class="content">
-                            <div class="name">Osaka Castle</div>
-                            <div class="des">Osaka Castle is a Japanese castle in Chūō-ku, Osaka, Japan. The castle is one of Japan's most famous landmarks and played a major role in the unification of Japan during the sixteenth century of the Azuchi–Momoyama period.</div>
-                            <button>See more</button>
-                        </div>
-                    </div>
-                    <div class="item" style="background-image: url(https://www.visitsaudi.com/content/dam/wvs/destinations/makkah/makkah-banner-promotion.jpg);">
-                        <div class="content">
-                            <div class="name">Makkah</div>
-                            <div class="des">Makkah, in a desert valley in western Saudi Arabia, is Islam’s holiest city, as it’s the birthplace of the Prophet Muhammad and the faith itself. Only Muslims are allowed in the city, with millions arriving for the annual Hajj (pilgrimage).</div>
-                            <button>See more</button>
-                        </div>
-                    </div>
-                    <div class="item" style="background-image: url(https://cdn.pixabay.com/photo/2017/09/11/23/40/bridge-2740854_960_720.jpg);">
-                        <div class="content">
-                            <div class="name">Mostar</div>
-                            <div class="des">Mostar is a city in southern Bosnia and Herzegovina, straddling the Neretva River. It’s known for the iconic Stari Most (Old Bridge), a reconstructed medieval arched bridge. The nearby alleys are full of shops and market stalls, and the Old Bridge Museum explores the bridge’s long history. </div>
-                            <button>See more</button>
-                        </div>
-                    </div>
-                    <div class="item" style="background-image: url(https://media.timeout.com/images/106153566/1024/576/image.webp);">
-                        <div class="content">
-                            <div class="name">Tasmania</div>
-                            <div class="des">Tasmania is an island state of Australia. It is located 240 kilometres to the south of the Australian mainland, and is separated from it by the Bass Strait.</div>
-                            <button>See more</button>
-                        </div>
-                    </div>
-                    <div class="item" style="background-image: url(https://media.timeout.com/images/105981815/1024/576/image.webp);">
-                        <div class="content">
-                            <div class="name">Srebrenik</div>
-                            <div class="des">Srebrenik is a city located in Tuzla Canton of the Federation of Bosnia and Herzegovina. It is located in northeastern Bosnia and Herzegovina, near Tuzla.</div>
-                            <button>See more</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="buttons">
-                    <button id="prev"><i class="fa-solid fa-angle-left"></i></button>
-                    <button id="next"><i class="fa-solid fa-angle-right"></i></button>
-                </div>
-            </div>
-        </section>
-        <!--========================= About Us =========================-->
-        <section id="about" class="about">
-            <div class="about-container">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1465070845512-2b2dbdc6df66?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="About Us">
-                </div>
-                <div class="about-text">
-                    <h1>About Us</h1>
-                    <p>At <strong>GoLavony</strong>, we connect travelers with unforgettable destinations. Our platform offers essential tools like weather forecasts, travel tips, and stunning visuals to help you explore the world effortlessly. Whether you're a seasoned adventurer or a first-time traveler, we ensure a seamless and personalized experience.</p>
-                    <p>We prioritize trust, affordability, and sustainability, working only with certified guides and verified operators. Our mission is to make luxury travel accessible and provide memorable journeys that are both enriching and responsible.</p>
-                    <p>Join GoLavony and let us guide you on your next adventure. The world is calling—are you ready to explore?</p>
-                </div>
-            </div>
-        </section>
-        <!--========= Contact ===========-->
-        <section id="contact" class="contact">
-            <h2>Contact Us</h2>
-            <p>If you have any queries, feel free to reach out!</p>
-            <form action="https://formspree.io/f/{your-email}" method="POST">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Your Email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-                </div>
-                <button type="submit">Send Message</button>
-            </form>
-        </section>
-            <!--===========Footer=================-->
-        <footer>
-            <div class="footer-grid">
-                <div class="footer-column">
-                    <h3>About Us</h3>
-                    <ul>
-                        <li><a href="#">Our Mission</a></li>
-                        <li><a href="#">Our Team</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                    </ul>
-                </div>
+        </div>
+    </section>
 
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#packages">Packages</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </div>
+    <footer>
+        <div class="footer-grid reveal">
+            <div class="footer-column">
+                <h3>About Us</h3>
+                <ul>
+                    <li><a href="#">Our Mission</a></li>
+                    <li><a href="#creators">The Creators</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#experiences">Experiences</a></li>
+                    <li><a href="#packages">Destinations</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Contact Us</h3>
+                <ul>
+                    <li>Email: inquiry@golavony.com</li>
+                    <li>Phone: +123-456-7890</li>
+                    <li>Address: Metropolitan University, Sylhet</li>
+                </ul>
+            </div>
+            <div class="footer-column newsletter">
+                <h3>Subscribe to Our Newsletter</h3>
+                <form class="newsletter-form" id="newsletterForm">
+                    <input type="email" placeholder="Enter your email" required>
+                    <button type="submit" class="magnetic">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="social-icons reveal">
+            <a href="#" target="_blank" aria-label="Google Maps"><i class="fa-brands fa-google"></i></a>
+            <a href="https://github.com/Cyber-Mood" target="_blank" aria-label="Github"><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/i.mahmoood/" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/mahmud-112ab0255/" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+        <p class="reveal">© 2026 GoLavony. Built with passion.</p>
+    </footer>
 
-                <div class="footer-column">
-                    <h3>Contact Us</h3>
-                    <ul>
-                        <li>Email: inquiry@golavony.com</li>
-                        <li>Phone: +123-456-7890</li>
-                        <li>Address: Metropolitan University, Sylhet</li>
-                    </ul>
-                </div>
-                <div class="footer-column newsletter">
-                    <h3>Subscribe to Our Newsletter</h3>
-                    <div class="newsletter-form">
-                        <input type="email" placeholder="Enter your email" required>
-                        <button type="submit">Subscribe</button>
-                    </div>
-                </div>
-                </div>
-                <div class="social-icons">
-                    <a href="https://www.google.com/maps/contrib/101440126387838231258/contribute/" target="blank" aria-label="Google Maps"><i class="fa-brands fa-google"></i></a>
-                    <a href="https://github.com/Cyber-Mood" target="blank" aria-label="Github"><i class="fab fa-github"></i></a>
-                    <a href="https://github.com/Tanjilase" target="blank" aria-label="Github"><i class="fab fa-github"></i></a>
-                    <a href="https://www.instagram.com/i.mahmoood/" target="blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.linkedin.com/in/mahmud-112ab0255/" target="blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                </div>
-            <p>&copy; 2024 GoLavony. All rights reserved.</p>
-        </footer>
+    <button id="backToTop" class="magnetic" aria-label="Back to Top"><i class="fa-solid fa-plane-up"></i></button>
+
     <script src="script.js"></script>
 </body>
 </html>
-  

@@ -3,31 +3,86 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign In</title>
+  <title>Sign In | GoLavony</title>
   <link rel="stylesheet" href="sign.css">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
-  <div class="wrapper">
-    <form action="">
-      <h1>Sign In | GoLavony</h1>
-      <div class="input-box">
-        <input type="text" placeholder="Username" required>
-        <i class='bx bxs-user'></i>
+
+  <div class="page-transition"></div>
+
+  <div class="split-layout">
+    
+    <div class="split-left">
+      <a href="index.html" class="back-btn"><i class='bx bx-arrow-back'></i> Back to Home</a>
+      <div class="hero-text">
+        <h2>Your journey begins here.</h2>
+        <p>Access exclusive deals and manage your bookings effortlessly with GoLavony.</p>
       </div>
-      <div class="input-box">
-        <input type="password" placeholder="Password" required>
-        <i class='bx bxs-lock-alt' ></i>
+    </div>
+
+    <div class="split-right">
+      <div class="form-wrapper">
+        <h2 class="form-title">Sign In</h2>
+        <p class="form-subtitle">Welcome back! Please enter your details.</p>
+        
+        <div class="social-auth">
+          <button class="social-btn magnetic"><i class='bx bxl-google'></i> Sign in with Google</button>
+          <button class="social-btn magnetic"><i class='bx bxl-github'></i> Sign in with GitHub</button>
+        </div>
+        
+        <div class="divider">
+            <span>or sign in with email</span>
+        </div>
+
+        <form id="loginForm">
+          <div class="input-box">
+            <input type="text" placeholder="Email or Username" required>
+            <i class='bx bxs-user'></i>
+          </div>
+          
+          <div class="input-box">
+            <input type="password" id="passwordInput" placeholder="Password" required>
+            <i class='bx bx-hide pwd-toggle' id="togglePassword" title="Show Password"></i>
+          </div>
+          
+          <div class="remember-forgot">
+            <label><input type="checkbox"> Remember Me</label>
+            <a href="#">Forgot Password?</a>
+          </div>
+          
+          <button type="submit" class="btn magnetic">Login</button>
+          
+          <div class="register-link">
+            <p>Don't have an account? <a href="#">Register</a></p>
+          </div>
+        </form>
       </div>
-      <div class="remember-forgot">
-        <label><input type="checkbox">Remember Me</label>
-        <a href="#">Forgot Password</a>
-      </div>
-      <button type="submit" class="btn">Login</button>
-      <div class="register-link">
-        <p>Dont have an account? <a href="#">Register</a></p>
-      </div>
-    </form>
+    </div>
+
   </div>
+
+  <script src="script.js"></script>
+  <script>
+    // Password Visibility Toggle
+    const togglePassword = document.getElementById('togglePassword');
+    const passwordInput = document.getElementById('passwordInput');
+
+    togglePassword.addEventListener('click', function (e) {
+      const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+      passwordInput.setAttribute('type', type);
+      this.classList.toggle('bx-show');
+      this.classList.toggle('bx-hide');
+    });
+
+    // Prevent Form Submit Refresh
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Login successful! Redirecting to dashboard...');
+        window.location.href = 'index.html';
+    });
+  </script>
+
 </body>
 </html>
